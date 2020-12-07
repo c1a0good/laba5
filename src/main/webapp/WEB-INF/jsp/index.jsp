@@ -20,47 +20,39 @@
     <TABLE>
         <TR>
             <TH>&nbsp;</TH>
-            <TH>Код сотрудника</TH>
-            <TH>Отдел</TH>
-            <TH>Фамилия</TH>
-            <TH>Имя</TH>
-            <TH>Отчество</TH>
-            <TH>Дата начала отпуска</TH>
-            <TH>Дата окончания отпуска</TH>
-            <TH>Заработная плата</TH>
-            <TH>Размер отпускных</TH>
+            <TH>Наименование специализации</TH>
+            <TH>Является ли специальность узкой</TH>
+            <TH>Количество врачей данной специальности</TH>
+            <TH>Ставка заработной платы</TH>
+            <TH>Сумма затрат на оплату зарплаты врачам</TH>
         </TR>
-        <c:forEach var="object" items="${objects}">
+        <c:forEach var="specializations" items="${specializations}">
             <TR>
                 <TD>
                     <INPUT type="checkbox" name="id"
-                           value="${object.id}">
+                           value="${specializations.id}">
 
                 </TD>
                 <TD>
-                    <A href="edit.html?id=${object.id}">
-                            ${object.getEmployeeID()}
+                    <A href="edit.html?id=${specializations.id}">
+                            ${specializations.getName()}
                     </A>
                 </TD>
-                <TD>${object.getDepartment()}</TD>
-                <TD>${object.getLastName()}</TD>
-                <TD>${object.getFirstName()}</TD>
-                <TD>${object.getMiddleName()}</TD>
-                <TD>${object.getStartDate()}</TD>
-                <TD>${object.getEndDate()}</TD>
-                <TD>${object.getSalary()}</TD>
-                <TD>${object.getEarnings()}</TD>
+                <TD>${specializations.isNarrow()}</TD>
+                <TD>
+                    <A href="indexDocs.html?id=${specializations.id}">
+                        ${specializations.getAmountOfDocs()}
+                </TD>
+                <TD>${specializations.getWageRate()}</TD>
+                <TD>${specializations.getCosts()}</TD>
             </TR>
         </c:forEach>
     </TABLE>
     <P>
-        Сумма отпускных: ${earningsSum}
-    </P>
-    <P>
         <A href="edit.html">Добавить</A>
         <BUTTON type="submit">Удалить</BUTTON>
     </P>
-    <TABLE>
+ <!--   <TABLE>
         <TR>
             <TH>Отдел</TH>
             <TH>Кол-во отсутствующих сотрудников</TH>
@@ -75,7 +67,7 @@
             <TD>${d.getEndDate()}</TD>
         </TR>
         </c:forEach>
-    </TABLE>
+    </TABLE> !-->
 </FORM>
 </body>
 </html>

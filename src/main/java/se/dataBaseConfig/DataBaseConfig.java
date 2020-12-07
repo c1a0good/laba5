@@ -1,4 +1,4 @@
-package se;
+package se.dataBaseConfig;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -12,7 +12,7 @@ public class DataBaseConfig {
 
     static public DataSource getDataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/JavaLaba4");
+        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/JavaLaba5");
         driverManagerDataSource.setUsername("postgres");
         driverManagerDataSource.setPassword("admin");
         driverManagerDataSource.setDriverClassName("org.postgresql.Driver");

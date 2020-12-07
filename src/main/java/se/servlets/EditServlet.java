@@ -1,6 +1,7 @@
 package se.servlets;
 
-import se.Storage;
+import se.DAO.SpecializationsRepository;
+import se.pckg.Specialization;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,10 +15,9 @@ public class EditServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             Integer id = Integer.parseInt(req.getParameter("id"));
-            MyObject object = Storage.readById(id);
-            req.setAttribute("object", object);
+            Specialization spec = SpecializationsRepository.readById(id);
+            req.setAttribute("specialization", spec);
         } catch(NumberFormatException e) {}
-        //getServletContext().getRequestDispatcher("/WEB-INF/edit.html") 2laba
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/edit.jsp")
                 .forward(req, resp);
     }
