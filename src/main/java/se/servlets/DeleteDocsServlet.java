@@ -3,15 +3,11 @@ package se.servlets;
 
 
 import se.DAO.DoctorsRepository;
-import se.DAO.SpecializationsRepository;
-import se.pckg.Doctor;
-import se.pckg.Specialization;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 
 public class DeleteDocsServlet extends HttpServlet {
     @Override

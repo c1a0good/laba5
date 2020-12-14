@@ -2,9 +2,10 @@ package se.pckg;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User implements Serializable, Comparable<User> {
     private String login;
     private String password;
+    private int role;
 
     public String getLogin() {
         return login;
@@ -20,5 +21,16 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+    public int compareTo(User user) {
+        return this.login.compareTo(user.getLogin());
     }
 }

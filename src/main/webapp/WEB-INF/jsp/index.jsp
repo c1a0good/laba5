@@ -16,10 +16,26 @@
     </STYLE>
 </head>
 <body>
+<c:choose>
+    <c:when test="${not empty user}">
+        ${user.login}&nbsp;&mdash; <A href="logout.html">Выйти</A>
+        <p></p>
+    </c:when>
+    <c:otherwise>
+        <A href="../../login-form.jsp">Войти</A>
+        <p></p>
+    </c:otherwise>
+</c:choose>
+<c:if test="${not empty user && user.getRole() == 1}">
+    <A href="indexUsers.html">Редактировать пользователей</A>
+    <p></p>
+</c:if>
+<c:if test="${not empty user && user.getRole() == 2}">
 <FORM action="delete.html" method="post">
+</c:if>
     <TABLE>
         <TR>
-            <TH>&nbsp;</TH>
+            <c:if test="${not empty user && user.getRole() == 2}"><TH>&nbsp;</TH></c:if>
             <TH>Наименование специализации</TH>
             <TH>Является ли специальность узкой</TH>
             <TH>Количество врачей данной специальности</TH>
@@ -28,15 +44,21 @@
         </TR>
         <c:forEach var="specializations" items="${specializations}">
             <TR>
+                <c:if test="${not empty user && user.getRole() == 2}">
                 <TD>
                     <INPUT type="checkbox" name="id"
                            value="${specializations.id}">
 
                 </TD>
+                </c:if>
                 <TD>
+                    <c:if test="${not empty user && user.getRole() == 2}">
                     <A href="edit.html?id=${specializations.id}">
+                    </c:if>
                             ${specializations.getName()}
+                    <c:if test="${not empty user && user.getRole() == 2}">
                     </A>
+                    </c:if>
                 </TD>
                 <TD>${specializations.isNarrow()}</TD>
                 <TD>
@@ -48,26 +70,12 @@
             </TR>
         </c:forEach>
     </TABLE>
+<c:if test="${not empty user && user.getRole() == 2}">
     <P>
         <A href="edit.html">Добавить</A>
         <BUTTON type="submit">Удалить</BUTTON>
     </P>
- <!--   <TABLE>
-        <TR>
-            <TH>Отдел</TH>
-            <TH>Кол-во отсутствующих сотрудников</TH>
-            <TH>Начало промежутка</TH>
-            <TH>Конец промежутка</TH>
-        </TR>
-        <c:forEach var="d" items="${departmentEmployees}">
-        <TR>
-            <TD>${d.getDepartment()}</TD>
-            <TD>${d.getEmployees()}</TD>
-            <TD>${d.getStartDate()}</TD>
-            <TD>${d.getEndDate()}</TD>
-        </TR>
-        </c:forEach>
-    </TABLE> !-->
 </FORM>
+</c:if>
 </body>
 </html>

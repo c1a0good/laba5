@@ -2,8 +2,10 @@ package se.DAO;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import se.dataBaseConfig.SpecializationMapping;
+import se.dataBaseConfig.UserMapping;
 import se.pckg.Doctor;
 import se.pckg.Specialization;
+import se.pckg.User;
 
 
 import java.util.Collection;
@@ -85,5 +87,16 @@ public class SpecializationsRepository {
         String sql = "DELETE FROM public.specializations "
                 + "WHERE id = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    public static User getUser(User user) {
+        String sql = "SELECT * FROM public.users "
+                + "WHERE login = \'" + user.getLogin() + "\' AND password = \'" + user.getPassword() + "\'";
+        Collection<User> users = jdbcTemplate.query(sql, new UserMapping());
+        if(users.isEmpty()){
+            return null;
+        }
+        else
+        return jdbcTemplate.query(sql, new UserMapping()).get(0);
     }
 }

@@ -16,10 +16,14 @@
     </STYLE>
 </head>
 <body>
+<c:if test="${not empty user && user.getRole() == 2}">
 <FORM action="deleteDocs.html?SpecId=${specialization.getId()}" method="post">
+</c:if>
     <TABLE>
         <TR>
+<c:if test="${not empty user && user.getRole() == 2}">
             <TH>&nbsp;</TH>
+</c:if>
             <TH>Специализация</TH>
             <TH>Фамилия</TH>
             <TH>Имя</TH>
@@ -32,16 +36,22 @@
         </TR>
         <c:forEach var="doctor" items="${doctors}">
             <TR>
+                <c:if test="${not empty user && user.getRole() == 2}">
                 <TD>
                     <INPUT type="checkbox" name="id"
                            value="${doctor.getId()}">
 
                 </TD>
+                </c:if>
                 <TD>${doctor.getSpecialization()}</TD>
                 <TD>
+                    <c:if test="${not empty user && user.getRole() == 2}">
                     <A href="editDocs.html?id=${doctor.getId()}&SpecId=${specialization.getId()}">
+                        </c:if>
                             ${doctor.getLastName()}
+                            <c:if test="${not empty user && user.getRole() == 2}">
                     </A>
+                        </c:if>
                 </TD>
                 <TD>${doctor.getFirstName()}</TD>
                 <TD>${doctor.getMiddleName()}</TD>
@@ -52,13 +62,17 @@
             </TR>
         </c:forEach>
     </TABLE>
+<c:if test="${not empty user && user.getRole() == 2}">
     <P>
         <A href="editDocs.html?id=-1&SpecId=${specialization.getId()}">Добавить</A>
         <BUTTON type="submit">Удалить</BUTTON>
     </P>
+</c:if>
     <P>
         <A href="index.html">Назад</A>
     </P>
+<c:if test="${not empty user && user.getRole() == 2}">
 </FORM>
+</c:if>
 </body>
 </html>
