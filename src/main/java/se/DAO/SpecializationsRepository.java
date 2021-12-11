@@ -41,7 +41,7 @@ public class SpecializationsRepository {
     }
 
     public static void update(Specialization specialization) {
-        Collection<Doctor> doctors = DoctorsRepository.readAllWithSpec(readById(specialization.getId()).getName());
+        Collection<Doctor> doctors = DoctorsRepository.readAllWithSpec(readById(specialization.getSpecializationId()).getName());
         if(!doctors.isEmpty()) {
             for (Doctor o : doctors) {
                 o.setSpecialization(specialization.getName());
@@ -63,7 +63,7 @@ public class SpecializationsRepository {
                 specialization.isNarrow(),
                 specialization.getAmountOfDocs(),
                 specialization.getWageRate(), specialization.getCosts(),
-                specialization.getId());
+                specialization.getSpecializationId());
     }
 
     public static void updateCosts(Specialization specialization) {
@@ -74,14 +74,14 @@ public class SpecializationsRepository {
                 specialization.isNarrow(),
                 specialization.getAmountOfDocs(),
                 specialization.getWageRate(), specialization.getCosts(),
-                specialization.getId());
+                specialization.getSpecializationId());
     }
 
     public static void delete(Integer id) {
         Collection<Doctor> doctors = DoctorsRepository.readAllWithSpec(readById(id).getName());
         if(!doctors.isEmpty()) {
             for (Doctor o : doctors) {
-                DoctorsRepository.delete(o.getId());
+                DoctorsRepository.delete(o.getDoctorId());
             }
         }
         String sql = "DELETE FROM public.specializations "

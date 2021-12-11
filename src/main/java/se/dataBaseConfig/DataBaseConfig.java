@@ -12,10 +12,10 @@ public class DataBaseConfig {
 
     static public DataSource getDataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/JavaLaba5");
-        driverManagerDataSource.setUsername("postgres");
-        driverManagerDataSource.setPassword("admin");
-        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
+        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:3306/ModernArch");
+        driverManagerDataSource.setUsername("root");
+        driverManagerDataSource.setPassword("root");
+        driverManagerDataSource.setDriverClassName("org.mysql.Driver");
         return driverManagerDataSource;
     }
 }

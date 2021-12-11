@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 
 public class SaveDocsServlet extends HttpServlet {
     @Override
@@ -27,15 +26,15 @@ public class SaveDocsServlet extends HttpServlet {
         doctor.setEmploymentDate(Integer.parseInt(req.getParameter("EmploymentDate")));
         doctor.setSectionId(Integer.parseInt(req.getParameter("SectionId")));
         if (req.getParameter("id") == null) {
-            doctor.setId(-1);
+            doctor.setDoctorId(-1);
             DoctorsRepository.create(doctor);
         } else {
             try {
-                doctor.setId(Integer.parseInt(req.getParameter("id")));
+                doctor.setDoctorId(Integer.parseInt(req.getParameter("id")));
             } catch(NumberFormatException e) {}
             DoctorsRepository.update(doctor);
         }
         Specialization specialization = SpecializationsRepository.readByName(doctor.getSpecialization());
-        resp.sendRedirect(req.getContextPath() + "/indexDocs.html?id=" + specialization.getId());
+        resp.sendRedirect(req.getContextPath() + "/indexDocs.html?id=" + specialization.getSpecializationId());
     }
 }

@@ -1,7 +1,6 @@
 package se.servlets;
 
 import se.DAO.SpecializationsRepository;
-import se.pckg.Doctor;
 import se.pckg.Specialization;
 
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class SaveServlet extends HttpServlet {
             SpecializationsRepository.create(spec);
         } else {
             try {
-                spec.setId(Integer.parseInt(req.getParameter("id")));
+                spec.setSpecializationId(Integer.parseInt(req.getParameter("id")));
             } catch(NumberFormatException e) {}
             SpecializationsRepository.update(spec);
         }

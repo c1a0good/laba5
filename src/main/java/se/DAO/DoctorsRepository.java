@@ -41,11 +41,11 @@ public class DoctorsRepository {
     }
 
     public static void update(Doctor doctor) {
-        Specialization spec = SpecializationsRepository.readByName(DoctorsRepository.readById(doctor.getId()).getSpecialization());
+        Specialization spec = SpecializationsRepository.readByName(DoctorsRepository.readById(doctor.getDoctorId()).getSpecialization());
         if(spec != null) {
             if (!doctor.getSpecialization().equals(spec.getName())) {
                 spec.setAmountOfDocs(spec.getAmountOfDocs() - 1);
-                spec.setCosts(spec.getCosts() - DoctorsRepository.readById(doctor.getId()).getSalary());
+                spec.setCosts(spec.getCosts() - DoctorsRepository.readById(doctor.getDoctorId()).getSalary());
                 SpecializationsRepository.updateCosts(spec);
             }
         }
@@ -57,7 +57,7 @@ public class DoctorsRepository {
                 doctor.getLastName(), doctor.getFirstName(), doctor.getMiddleName(),
                 doctor.getBirthdate(), doctor.getEmploymentDate(),
                 doctor.getSectionId(),
-                doctor.getSalary(), doctor.getId());
+                doctor.getSalary(), doctor.getDoctorId());
     }
 
     private static void countingSalary(Doctor doctor) {
@@ -74,8 +74,8 @@ public class DoctorsRepository {
             multiplier += 0.5;
         }
         doctor.setSalary(spec.getWageRate()*multiplier);
-        if(doctor.getId() != -1) {
-            Doctor o = DoctorsRepository.readById(doctor.getId());
+        if(doctor.getDoctorId() != -1) {
+            Doctor o = DoctorsRepository.readById(doctor.getDoctorId());
             if (o != null) {
                 if (!o.getSpecialization().equals(spec.getName())) {
                     spec.setCosts(spec.getCosts() + doctor.getSalary());
@@ -110,7 +110,7 @@ public class DoctorsRepository {
                 doctor.getLastName(), doctor.getFirstName(), doctor.getMiddleName(),
                 doctor.getBirthdate(), doctor.getEmploymentDate(),
                 doctor.getSectionId(),
-                doctor.getSalary(), doctor.getId());
+                doctor.getSalary(), doctor.getDoctorId());
     }
 
     private static void countingSalary(Doctor doctor, Specialization spec) {

@@ -1,23 +1,29 @@
 package se.pckg;
 
-import se.DAO.SpecializationsRepository;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
-import java.util.Comparator;
-
+@Entity
 public class Specialization implements Comparable<Specialization> {
-    private int id;
+    @Id
+    @GeneratedValue
+    private int specializationId;
     private String name;
     private boolean narrow;
-    private int amountOfDocs;
     private double wageRate;
+    @Transient
+    private int amountOfDocs;
+    @Transient
     private double costs;
 
-    public int getId() {
-        return id;
+    public int getSpecializationId() {
+        return specializationId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSpecializationId(int id) {
+        this.specializationId = id;
     }
 
     public String getName() {

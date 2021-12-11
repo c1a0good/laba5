@@ -9,7 +9,7 @@ import java.util.Collection;
 public class UsersRepository {
     public static JdbcTemplate jdbcTemplate = se.dataBaseConfig.DataBaseConfig.getJdbcTemplate();
     public static Collection<User> readAll() {
-        String sql = "SELECT * FROM public.users";
+        String sql = "SELECT * FROM users";
         return (jdbcTemplate.query(sql, new UserMapping()));
     }
 

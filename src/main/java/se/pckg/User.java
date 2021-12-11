@@ -1,7 +1,12 @@
 package se.pckg;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.lang.NonNull;
+
+import javax.persistence.Entity;
 import java.io.Serializable;
 
+@Entity
 public class User implements Serializable, Comparable<User> {
     private String login;
     private String password;

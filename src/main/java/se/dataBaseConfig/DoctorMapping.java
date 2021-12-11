@@ -11,7 +11,7 @@ public class DoctorMapping implements RowMapper<Doctor> {
     @Override
     public Doctor mapRow(ResultSet resultSet, int i) throws SQLException {
         Doctor doc = new Doctor();
-        doc.setId(resultSet.getInt("id"));
+        doc.setDoctorId(resultSet.getInt("id"));
         doc.setSpecialization(resultSet.getString("specialization"));
         doc.setLastName(resultSet.getString("lastName"));
         doc.setFirstName(resultSet.getString("firstName"));

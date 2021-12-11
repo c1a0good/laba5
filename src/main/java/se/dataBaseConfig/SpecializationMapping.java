@@ -10,7 +10,7 @@ public class SpecializationMapping implements RowMapper<Specialization> {
     @Override
     public Specialization mapRow(ResultSet resultSet, int i) throws SQLException {
         Specialization spec = new Specialization();
-        spec.setId(resultSet.getInt("id"));
+        spec.setSpecializationId(resultSet.getInt("id"));
         spec.setName(resultSet.getString("name"));
         spec.setNarrow(resultSet.getBoolean("narrow"));
         spec.setAmountOfDocs(resultSet.getInt("amountOfDocs"));

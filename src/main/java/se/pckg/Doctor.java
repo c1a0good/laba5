@@ -1,8 +1,16 @@
 package se.pckg;
 
+import javax.persistence.*;
+
+@Entity
+@Cacheable
 public class Doctor implements Comparable<Doctor> {
-    private int id;
-    private String specialization;
+    @Id
+    @GeneratedValue
+    private int doctorId;
+    @ManyToOne
+    @JoinColumn(name="specializationId")
+    private Specialization specialization;
     private String lastName;
     private String firstName;
     private String middleName;
@@ -11,19 +19,19 @@ public class Doctor implements Comparable<Doctor> {
     private int sectionId;
     private double salary;
 
-    public int getId() {
-        return id;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDoctorId(int id) {
+        this.doctorId = id;
     }
 
-    public String getSpecialization() {
+    public Specialization getSpecialization() {
         return specialization;
     }
 
-    public void setSpecialization(String specialization) {
+    public void setSpecialization(Specialization specialization) {
         this.specialization = specialization;
     }
 
